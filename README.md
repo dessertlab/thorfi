@@ -1,3 +1,19 @@
+## ThorFI: A Novel Approach for Network Fault Injection as a Service
+
+This repo includes **ThorFI**, a novel fault injection solution for virtual networks in cloud computing infrastructures. ThorFI is designed to provide non-intrusive fault injection capabilities for a cloud tenant, and to isolate injections from interfering with other tenants on the infrastructure. Currently, ThorFI supports OpenStack cloud management platform.
+ThorFI details are reported into the paper "_ThorFI: A Novel Approach for Network Fault Injection as a Service_" accepted for publication in Elsevier Journal of Network and Computer Applications (JNCA).
+
+Please, cite the following paper if you use the tools for your research:
+
+```
+@article{cotroneo2022thorfi,
+  title={ThorFI: A Novel Approach for Network Fault Injection as a Service},
+  author={Cotroneo, Domenico and De Simone, Luigi and Natella, Roberto},
+  journal={arXiv preprint arXiv:TBD},
+  year={2022}
+}
+```
+
 ## Installing ThorFI
 
 To run ThorFI, you need a working OpenStack deployment. To try the tool, we suggest installing OpenStack on a virtual machine, by adopting an all-in-one deployment (all OpenStack services are deployed within the same VM). You can refer to the following tutorial about installing an OpenStack all-in-one deployment on CentOS: https://github.com/dessertlab/OpenStack-Fault-Injection-Environment/blob/7b1dea8afb342d2087cd3e1da555ef0e66b94258/INSTALL.md. On Ubuntu, you can use 
