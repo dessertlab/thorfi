@@ -1,0 +1,23 @@
+{
+  "nodes":[
+    {"name":"public","group":1},
+    {"name":"router_pippozzo_1","group":2},
+    {"name":"router_pippozzo_2","group":2},
+    {"name":"network_pippozzo_1","group":3},
+    {"name":"network_pippozzo_2","group":3},
+    {"name":"VM1_network_pippozzo_1","group":4},
+    {"name":"VM2_network_pippozzo_1","group":4},
+    {"name":"VM1_network_pippozzo_2","group":4},
+    {"name":"VM2_network_pippozzo_2","group":4}
+    ],
+  "links":[
+    {"source":1,"target":0,"value":1},
+    {"source":2,"target":0,"value":1},
+    {"source":3,"target":1,"value":1},
+    {"source":4,"target":2,"value":1},
+    {"source":5,"target":3,"value":1},
+    {"source":6,"target":3,"value":1},
+    {"source":7,"target":4,"value":1},
+    {"source":8,"target":4,"value":1}
+  ]
+}

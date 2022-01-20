@@ -1,0 +1,343 @@
+[
+  {
+    "title" : "tenant-faults",
+    "folder" : "true",
+    "children": [
+      {
+        "folder" : "true",
+        "title" : "network",
+        "children" : [
+          {
+            "title": "latency",
+            "description": "The packets on the tenant virtual network experience a delay (the amount of delay is configurable, in milliseconds).",
+            "args": "1000"
+          },
+          {
+            "title": "loss",
+            "description": "The packets on the tenant virtual network are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "corrupt",
+            "description": "The packets on the tenant virtual network are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "duplicate",
+            "description": "The packets on the tenant virtual network are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "bottleneck",
+            "description": "The tenant virtual network becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+            "args": "256"
+          },
+          {
+            "title": "delete",
+            "description": "The tenant virtual network is deleted, together with all resources attached to the network.",
+            "args": ""
+          }
+        ]
+      },
+      {
+        "folder":"true",
+        "title" : "subnet",
+        "children" :[
+          {
+            "title": "latency",
+            "description": "The packets on the tenant virtual subnet experience a delay (the amount of delay is configurable, in milliseconds).",
+            "args": "1000"
+          },
+          {
+            "title": "loss",
+            "description": "The packets on the tenant virtual subnet are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "corrupt",
+            "description": "The packets on the tenant virtual subnet are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "duplicate",
+            "description": "The packets on the tenant virtual subnet are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+            "args": ""
+          }
+
+        ]
+      },
+      {
+        "folder":"true",
+        "title" : "router",
+        "children" :[
+          {
+            "title": "latency",
+            "description": "The packets that flow through the virtual router experience a delay (the amount of delay is configurable, in milliseconds).",
+            "args": "1000"
+          },
+          {
+            "title": "loss",
+            "description": "The packets that flow through the virtual router are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "corrupt",
+            "description": "The packets that flow through the virtual router are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "duplicate",
+            "description": "The packets that flow through the virtual router are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "bottleneck",
+            "description": "The tenant virtual router becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+            "args": "256"
+          },
+          {
+            "title": "delete",
+            "description": "The tenant virtual router is deleted, together with all resources attached to the router.",
+            "args": ""
+          }
+
+        ]
+      },
+      {
+        "folder":"true",
+        "title" : "port",
+        "children" :[
+          {
+            "title": "latency",
+            "description": "The packets that flow on the port experience a delay (the amount of delay is configurable, in milliseconds).",
+            "args": "1000"
+          },
+          {
+            "title": "loss",
+            "description": "The packets that flow on the port are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "corrupt",
+            "description": "The packets that flow on the port are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "duplicate",
+            "description": "The packets that flow on the port are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "bottleneck",
+            "description": "The tenant virtual port becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+            "args": "256"
+          },
+          {
+            "title": "delete",
+            "description": "The tenant port is deleted.",
+            "args": ""
+          }
+
+        ]
+      },
+      {
+        "folder":"true",
+        "title" : "floatingip",
+        "children" :[
+          {
+            "title": "latency",
+            "description": "The packets that flow through the floating IP experience a delay (the amount of delay is configurable, in milliseconds).",
+            "args": "1000"
+          },
+          {
+            "title": "loss",
+            "description": "The packets that flow through the floating IP are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "duplicate",
+            "description": "The packets that flow through the floating IP are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+            "args": ""
+          },
+          {
+            "title": "bottleneck",
+            "description": "The floating IP experiences a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+            "args": "256"
+          },
+          {
+            "title": "corrupt",
+            "description": "The packets that flow through the floating IP are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+            "args": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "folder" : "true",
+    "title" : "infrastructure-faults",
+    "children": [
+      
+          {
+            "folder" : "true",
+            "title" : "node",
+            "children" : [
+              {
+                "title": "latency",
+                "description": "The packets on the physical node network interfaces experience a delay (the amount of delay is configurable, in milliseconds).",
+                "args": "1000"
+              },
+              {
+                "title": "loss",
+                "description": "The packets on the physical node network interfaces are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "corrupt",
+                "description": "The packets on the physical node network interfaces are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "duplicate",
+                "description": "The packets on the physical node network interfaces are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "bottleneck",
+                "description": "The physical node network interfaces becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+                "args": "256"
+              },
+              {
+                "title": "down",
+                "description": "The physical node network interfaces becomes all down",
+                "args": ""
+              },
+              {
+                "title": "reboot",
+                "description": "The physical node is rebooted",
+                "args": ""
+              }
+
+            ]
+          },
+    
+          {
+            "folder" : "true",
+            "title" : "interface",
+            "children" : [
+              {
+                "title": "latency",
+                "description": "The packets on the physical physical interface experience a delay (the amount of delay is configurable, in milliseconds).",
+                "args": "1000"
+              },
+              {
+                "title": "loss",
+                "description": "The packets on the physical physical interface are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "corrupt",
+                "description": "The packets on the physical physical interface are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "duplicate",
+                "description": "The packets on the physical physical interface are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "bottleneck",
+                "description": "The physical interface becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+                "args": "256"
+              },
+              {
+                "title": "down",
+                "description": "The physical interface becomes down",
+                "args": ""
+              }
+
+            ]
+          },
+    
+          {
+            "folder" : "true",
+            "title" : "switch",
+            "children" : [
+              {
+                "title": "latency",
+                "description": "The packets on the physical switch experience a delay (the amount of delay is configurable, in milliseconds).",
+                "args": "1000"
+              },
+              {
+                "title": "loss",
+                "description": "The packets on the physical switch are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "corrupt",
+                "description": "The packets on the physical switch are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "duplicate",
+                "description": "The packets on the physical switch are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "bottleneck",
+                "description": "The physical switch becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+                "args": "256"
+              },
+              {
+                "title": "down",
+                "description": "The physical switch becomes all down",
+                "args": ""
+              }
+
+            ]
+          },
+    
+          {
+            "folder" : "true",
+            "title" : "switch_port",
+            "children" : [
+              {
+                "title": "latency",
+                "description": "The packets on the physical switch port experience a delay (the amount of delay is configurable, in milliseconds).",
+                "args": "1000"
+              },
+              {
+                "title": "loss",
+                "description": "The packets on the physical switch port are randomly lost (the probability of loss of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "corrupt",
+                "description": "The packets on the physical switch port are randomly corrupted (the probability of corruption of each packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "duplicate",
+                "description": "The packets on the physical switch port are randomly duplicated (the probability of duplicating a packet is configurable, in percentage).",
+                "args": ""
+              },
+              {
+                "title": "bottleneck",
+                "description": "The physical switch port becomes a bandwidth bottleneck (the bandwidth throttling is configurable, in kbit/seconds).",
+                "args": "256"
+              },
+              {
+                "title": "down",
+                "description": "The physical switch port becomes down",
+                "args": ""
+              }
+
+            ]
+          }
+
+
+
+      
+      ]
+  }
+]

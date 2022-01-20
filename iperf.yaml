@@ -1,0 +1,180 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template to create iperf3 client-server instances for executing ThorFI workload
+
+parameters:
+
+  image:
+    type: string
+    description: Name of image to use for servers
+    default: "thorfi_image"
+
+  flavor:
+    type: string
+    description: Flavor to use for servers
+    default: "thorfi_flavor"
+
+  public_net_ID_iperf_client:
+    type: string
+    description: >
+      ID or name of public network for which floating IP addresses will be allocated to the iperf client
+    default: "public"
+
+  public_net_ID_iperf_server:
+    type: string
+    description: >
+      ID or name of public network for which floating IP addresses will be allocated to the iperf server
+    default: "public"
+
+  ##iperf_client
+  private_net_ID_iperf_client:
+    type: string
+    description: ID of private network where iperf client must be attached
+
+  private_subnet_ID_iperf_client:
+    type: string
+    description: ID of private subnet where iperf client must be attached  
+
+  ##iperf_server
+  private_net_ID_iperf_server:
+    type: string
+    description: ID of private network where iperf server must be attached
+
+  private_subnet_ID_iperf_server:
+    type: string
+    description: ID of private subnet where iperf server must be attached
+
+  ##instances parameters
+  client_instance_name:
+    type: string
+    description: Name of the iperf client instance
+    default: "__ThorFI_iperf_client"
+
+  server_instance_name:
+    type: string
+    description: Name of the iperf server instance
+    default: "__ThorFI_iperf_server"
+
+
+resources:
+  
+  thorfi_iperf_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: ThorFI security group for iperf workload
+      name: thorfi_iperf_security_group
+      rules: [
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: udp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: udp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: icmp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: icmp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  port_range_min: 22,
+                  port_range_max: 22,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                }
+      ]
+
+  # iperf client definition
+  iperf_client_port:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_param: private_net_ID_iperf_client }
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet_ID_iperf_client }
+      security_groups: [{ get_resource: thorfi_iperf_security_group }]
+
+  iperf_client:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: client_instance_name }
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      #key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: iperf_client_port }
+
+  iperf_client_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: { get_param: public_net_ID_iperf_client }
+      port_id: { get_resource: iperf_client_port }
+
+  # iperf server definition
+  iperf_server_port:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_param: private_net_ID_iperf_server }
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet_ID_iperf_server }
+      security_groups: [{ get_resource: thorfi_iperf_security_group }]
+
+  iperf_server:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: server_instance_name }
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      #key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: iperf_server_port }
+
+  iperf_server_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: { get_param: public_net_ID_iperf_server }
+      port_id: { get_resource: iperf_server_port }
+
+outputs:
+  iperf_client_private_ip:
+    description: IP address of iperf_client in private network
+    value: { get_attr: [ iperf_client, first_address ] }
+  
+  iperf_client_public_ip:
+    description: Floating IP address of iperf_client in public network
+    value: { get_attr: [ iperf_client_floating_ip, floating_ip_address ] }  
+
+  iperf_server_private_ip:
+    description: IP address of iperf_server in private network
+    value: { get_attr: [ iperf_server, first_address ] }
+  
+  iperf_server_public_ip:
+    description: Floating IP address of iperf_server in public network
+    value: { get_attr: [ iperf_server_floating_ip, floating_ip_address ] }  
+

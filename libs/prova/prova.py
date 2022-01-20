@@ -1,0 +1,1 @@
+print "call prova.py"

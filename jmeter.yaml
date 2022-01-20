@@ -1,0 +1,133 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template to create jmeter client-server instances for executing ThorFI workload
+
+parameters:
+
+  #key_name:
+  #  type: string
+  #  description: Name of keypair to assign to servers
+  #  default: "thorfi"
+
+  image:
+    type: string
+    description: Name of image to use for servers
+    default: "thorfi_image"
+
+  flavor:
+    type: string
+    description: Flavor to use for servers
+    default: "thorfi_flavor"
+
+  public_net_ID_jmeter_client:
+    type: string
+    description: >
+      ID or name of public network for which floating IP addresses will be allocated to the jmeter client
+    default: "public"
+
+  ##jmeter_client
+  private_net_ID_jmeter_client:
+    type: string
+    description: ID of private network where jmeter client must be attached
+
+  private_subnet_ID_jmeter_client:
+    type: string
+    description: ID of private subnet where jmeter client must be attached  
+
+  ##instances parameters
+  client_instance_name:
+    type: string
+    description: Name of the iperf client instance
+    default: "__ThorFI_jmeter_client"
+
+resources:
+
+  thorfi_jmeter_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: ThorFI security group for jmeter workload
+      name: thorfi_jmeter_security_group
+      rules: [
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: udp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: udp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: icmp,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: icmp,
+                  direction: egress,
+                  ethertype: 'IPv4',
+                },
+                {
+                  remote_ip_prefix: 0.0.0.0/0,
+                  protocol: tcp,
+                  port_range_min: 22,
+                  port_range_max: 22,
+                  direction: ingress,
+                  ethertype: 'IPv4',
+                }
+      ]
+
+  
+  # iperf client definition
+  jmeter_client_port:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_param: private_net_ID_jmeter_client }
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet_ID_jmeter_client }
+      security_groups: [{ get_resource: thorfi_jmeter_security_group }]
+
+  
+  jmeter_client:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: client_instance_name }
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      #key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: jmeter_client_port }
+
+  jmeter_client_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: { get_param: public_net_ID_jmeter_client }
+      port_id: { get_resource: jmeter_client_port }
+
+
+outputs:
+  jmeter_client_private_ip:
+    description: IP address of jmeter_client in private network
+    value: { get_attr: [ jmeter_client, first_address ] }
+  
+  jmeter_client_public_ip:
+    description: Floating IP address of jmeter_client in public network
+    value: { get_attr: [ jmeter_client_floating_ip, floating_ip_address ] }  
