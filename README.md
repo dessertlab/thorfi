@@ -1,4 +1,4 @@
-## ThorFI: a Novel Approach for Network Fault Injection as a Service
+## <div align="center"><img src="thorfi_logo.png" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/><p align="center">ThorFI: a Novel Approach for Network Fault Injection as a Service</p></div> 
 
 This repo includes **ThorFI**, a novel fault injection solution for virtual networks in cloud computing infrastructures. ThorFI is designed to provide non-intrusive fault injection capabilities for a cloud tenant, and to isolate injections from interfering with other tenants on the infrastructure. Currently, ThorFI supports OpenStack cloud management platform.
 ThorFI details are reported into the paper "_ThorFI: a Novel Approach for Network Fault Injection as a Service_" accepted for publication in Elsevier Journal of Network and Computer Applications (JNCA).
@@ -248,7 +248,7 @@ In the following, is reported the documentation of the main ThorFI APIs.
 
 **Error response messagge**: 404
 
-# **/inject\_RESOURCE** API class
+### _**/inject\_RESOURCE**_ API class
 
 The inject\_RESOURCE APIs are used to request injection actions towards injection agents. Each API in this class is a POST with the following parameters:
 
