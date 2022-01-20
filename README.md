@@ -1,13 +1,13 @@
-## ThorFI: A Novel Approach for Network Fault Injection as a Service
+## ThorFI: a Novel Approach for Network Fault Injection as a Service
 
 This repo includes **ThorFI**, a novel fault injection solution for virtual networks in cloud computing infrastructures. ThorFI is designed to provide non-intrusive fault injection capabilities for a cloud tenant, and to isolate injections from interfering with other tenants on the infrastructure. Currently, ThorFI supports OpenStack cloud management platform.
-ThorFI details are reported into the paper "_ThorFI: A Novel Approach for Network Fault Injection as a Service_" accepted for publication in Elsevier Journal of Network and Computer Applications (JNCA).
+ThorFI details are reported into the paper "_ThorFI: a Novel Approach for Network Fault Injection as a Service_" accepted for publication in Elsevier Journal of Network and Computer Applications (JNCA).
 
 Please, cite the following paper if you use the tools for your research:
 
 ```
 @article{cotroneo2022thorfi,
-  title={ThorFI: A Novel Approach for Network Fault Injection as a Service},
+  title={ThorFI: a Novel Approach for Network Fault Injection as a Service},
   author={Cotroneo, Domenico and De Simone, Luigi and Natella, Roberto},
   journal={arXiv preprint arXiv:TBD},
   year={2022}
