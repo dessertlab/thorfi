@@ -6,11 +6,13 @@ ThorFI details are reported into the paper "_ThorFI: a Novel Approach for Networ
 Please, cite the following paper if you use the tools for your research:
 
 ```
-@article{cotroneo2022thorfi,
-  title={ThorFI: a Novel Approach for Network Fault Injection as a Service},
-  author={Cotroneo, Domenico and De Simone, Luigi and Natella, Roberto},
-  journal={arXiv preprint arXiv:TBD},
-  year={2022}
+@misc{cotroneo2022thorfi,
+      title={ThorFI: A Novel Approach for Network Fault Injection as a Service}, 
+      author={Domenico Cotroneo and Luigi De Simone and Roberto Natella},
+      year={2022},
+      eprint={2201.07521},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE}
 }
 ```
 
