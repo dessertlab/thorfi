@@ -8,7 +8,7 @@ Please, cite the following paper if you use the tools for your research:
 ```
 @article{cotroneo2022thorfi,
 	title={ThorFI: A Novel Approach for Network Fault Injection as a Service}, 
-	author={Domenico Cotroneo and Luigi De Simone and Roberto Natella},
+	author = {Domenico Cotroneo and Luigi {De Simone} and Roberto Natella},
 	journal = {Journal of Network and Computer Applications},
 	volume = {201},
 	pages = {103334},
